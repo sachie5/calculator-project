@@ -1,5 +1,96 @@
 @use "./variables.scss" as *;
 
+a:link{
+    text-decoration: none;
+}
+
 .calculator{
-    background-color: ;
+    background-color: $background-color;
+
+    &__button {
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-areas: none;
+    }
+
+        &--item1{
+            grid-area: AC;
+        }
+
+        &--item2{
+            grid-area: negative-operation;
+        }
+        
+        &--item3{
+            grid-area: percent;
+        }
+
+        &--item4{
+            grid-area: divide;
+        }
+
+        &--item5{
+            grid-area: multiply;
+        }
+
+        &--item6{
+            grid-area: subtract;
+        }
+
+        &--item7{
+            grid-area: add;
+        }
+
+        &--item8{
+            grid-area: equals;
+        }
+
+        &--item9{
+            grid-area: zero;
+        }
+
+        &--item10{
+            grid-area: one;
+        }
+
+        &--item11{
+            grid-area: two;
+        }
+
+        &--item12{
+            grid-area: three;
+        }
+
+        &--item13{
+            grid-area: four;
+        }
+
+        &--item14{
+            grid-area: five;
+        }
+
+        &--item15{
+            grid-area: six;
+        }
+
+        &--item16{
+            grid-area: seven;
+        }
+
+        &--item17{
+            grid-area: eight;
+        }
+
+        &--item18{
+            grid-area: nine;
+        }
+
+        &--item1{
+            grid-area: decimal;
+        }
+
 }

@@ -70,14 +70,3 @@ a:link {
 .calculator--item1 {
   grid-area: decimal;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-body {
-  background-color: red;
-}
