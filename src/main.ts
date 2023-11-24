@@ -13,15 +13,15 @@ const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
 if(screen === null || numbers === null){
   throw new Error ("Issues with Selector")
 };
-numbers.forEach(number => {
-  number.style.color = "white";
- });
 
 
 const printButtonNumber = (event: Event) => {
-  const buttonIsClicked = event.currentTarget as HTMLAnchorElement;
+  screen.innerHTML = "<p> Number</p>"
   
 }
 
+numbers.forEach(number => {
+  number.addEventListener("click", printButtonNumber)
+ });
 
 
