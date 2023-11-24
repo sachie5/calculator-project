@@ -2,24 +2,46 @@ a:link {
   text-decoration: none;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .calc {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px 10px;
   /*        &--item1{
               grid-area: screen;
           } */
 }
 .calc__screen {
   display: flex;
-  border: 1px solid black;
   justify-content: center;
-  height: 100px;
+  width: 60%;
+  height: 75px;
+  background-color: white;
+}
+.calc__button {
+  display: flex;
+  font-size: 20px;
+  color: #000080;
+}
+.calc__button--operation {
+  color: #FF8C00;
+  border: 1px solid #000080;
+  border-radius: 50%;
 }
 .calc__grid {
   display: grid;
+  justify-items: center;
+  width: 75%;
   gap: 10px;
+  background-color: #FFC0CB;
+  grid-template-rows: repeat(1fr, 4);
+  grid-template-columns: repeat(1fr, 4);
   grid-template-areas: "AC negative percent divide" "seven eight nine multiply" "four five six subtract" "one two three add" "space zero decimal equals";
 }
 .calc--item2 {

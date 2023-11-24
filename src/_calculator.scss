@@ -4,29 +4,52 @@ a:link{
     text-decoration: none;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .calc{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px 10px; 
 
     &__screen {
         display: flex;
-        border: 1px solid black;
         justify-content: center;
-        height: 100px;
+        width: 60%;
+        height: 75px;
+        background-color: white;
     }
-    
+
+    &__button {
+        display: flex;
+        font-size: 20px;
+        color: $primary-color;
+
+        &--operation{
+            color:$page-color;
+            border: 1px solid $primary-color;
+            border-radius: 50%;
+        }
+    }
 
     &__grid {
         display: grid;
+        justify-items: center;
+        width: 75%;
         gap: 10px;
+        background-color: $background-color;
+        grid-template-rows: repeat(1fr, 4);
+        grid-template-columns: repeat(1fr, 4);
         grid-template-areas:
         "AC negative percent divide"
         "seven eight nine multiply"
         "four five six subtract"
         "one two three add"
         "space zero decimal equals" ; 
+
     }
 
 /*        &--item1{
@@ -112,5 +135,4 @@ a:link{
         &--item21{
             grid-area: space;
         }
-
     }
