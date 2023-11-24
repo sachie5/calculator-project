@@ -1,0 +1,16 @@
+@use "./_variables" as *;
+
+@use "./calculator";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+body {
+    font-family: $font-body;
+    background-color: $page-color;
+    padding: 10px;
+}
