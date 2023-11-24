@@ -14,7 +14,7 @@ if(screen === null || numbers === null){
   throw new Error ("Issues with Selector")
 };
 numbers.forEach(number => {
-  number.style. ="white";
+  number.style.color = "white";
  });
 
 
