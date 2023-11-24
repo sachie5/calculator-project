@@ -1,26 +1,27 @@
 import './main.scss'
 
+/* // functions
 
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+1) print number when button is click into the screen
+2) operations mean they will do that action 
+3) equals will print the result
+4) A/C clears the screen
+ */
+const screen = document.querySelector<HTMLDivElement>(".calc__screen");
+const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+if(screen === null || numbers === null){
+  throw new Error ("Issues with Selector")
+};
+numbers.forEach(number => {
+  number.style. ="white";
+ });
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+const printButtonNumber = (event: Event) => {
+  const buttonIsClicked = event.currentTarget as HTMLAnchorElement;
+  
+}
+
+
+
