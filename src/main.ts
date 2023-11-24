@@ -14,11 +14,16 @@ if(screen === null || numbers === null){
   throw new Error ("Issues with Selector")
 };
 
+const digits = Array.from(numbers);
 
 const printButtonNumber = (event: Event) => {
-  screen.innerHTML = "<p> Number</p>"
-  
+  const buttonClicked = event.currentTarget; 
+ for (let index = 0; index < digits.length; index++) {
+   return screen.textContent = `${digits[index].innerText}`;
+   }
+   return 
 }
+
 
 numbers.forEach(number => {
   number.addEventListener("click", printButtonNumber)
