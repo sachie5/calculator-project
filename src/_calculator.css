@@ -12,10 +12,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 10px;
-  /*        &--item1{
-              grid-area: screen;
-          } */
+  padding: 20px;
 }
 .calc__screen {
   display: flex;
@@ -26,71 +23,78 @@ main {
 }
 .calc__button {
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 20px;
   color: #000080;
+  padding: 5px;
 }
 .calc__button--operation {
   color: #FF8C00;
   border: 1px solid #000080;
-  border-radius: 50%;
+  background-color: #000080;
 }
 .calc__grid {
   display: grid;
-  justify-items: center;
-  width: 75%;
+  place-items: center;
+  width: 300px;
+  height: 400px;
   gap: 10px;
   background-color: #FFC0CB;
-  grid-template-rows: repeat(1fr, 4);
-  grid-template-columns: repeat(1fr, 4);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-areas: "AC negative percent divide" "seven eight nine multiply" "four five six subtract" "one two three add" "space zero decimal equals";
 }
-.calc--item2 {
+.calc--item1 {
   grid-area: AC;
 }
-.calc--item3 {
+.calc--item2 {
   grid-area: negative;
 }
-.calc--item4 {
+.calc--item3 {
   grid-area: percent;
 }
-.calc--item5 {
+.calc--item4 {
   grid-area: divide;
 }
-.calc--item6 {
+.calc--item5 {
   grid-area: seven;
 }
-.calc--item7 {
+.calc--item6 {
   grid-area: eight;
 }
-.calc--item8 {
+.calc--item7 {
   grid-area: nine;
 }
-.calc--item9 {
+.calc--item8 {
   grid-area: multiply;
 }
-.calc--item10 {
+.calc--item9 {
   grid-area: four;
 }
-.calc--item11 {
+.calc--item10 {
   grid-area: five;
 }
-.calc--item12 {
+.calc--item11 {
   grid-area: six;
 }
-.calc--item13 {
+.calc--item12 {
   grid-area: subtract;
 }
-.calc--item14 {
+.calc--item13 {
   grid-area: one;
 }
-.calc--item15 {
+.calc--item14 {
   grid-area: two;
 }
-.calc--item16 {
+.calc--item15 {
   grid-area: three;
 }
-.calc--item17 {
+.calc--item16 {
   grid-area: add;
+}
+.calc--item17 {
+  grid-area: space;
 }
 .calc--item18 {
   grid-area: zero;
@@ -100,7 +104,4 @@ main {
 }
 .calc--item20 {
   grid-area: equals;
-}
-.calc--item21 {
-  grid-area: space;
 }

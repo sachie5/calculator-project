@@ -13,7 +13,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px; 
+    padding: 20px; 
 
     &__screen {
         display: flex;
@@ -25,24 +25,28 @@ main {
 
     &__button {
         display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 20px;
         color: $primary-color;
+        padding: 5px;
 
         &--operation{
             color:$page-color;
             border: 1px solid $primary-color;
-            border-radius: 50%;
+            background-color: $primary-color;
         }
     }
 
     &__grid {
         display: grid;
-        justify-items: center;
-        width: 75%;
+        place-items: center;
+        width: 300px;
+        height: 400px;
         gap: 10px;
         background-color: $background-color;
-        grid-template-rows: repeat(1fr, 4);
-        grid-template-columns: repeat(1fr, 4);
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-areas:
         "AC negative percent divide"
         "seven eight nine multiply"
@@ -52,72 +56,72 @@ main {
 
     }
 
-/*        &--item1{
-            grid-area: screen;
-        } */
-
-        &--item2{
+        &--item1{
             grid-area: AC;
         }
         
-        &--item3{
+        &--item2{
             grid-area: negative;
         }
 
-        &--item4{
+        &--item3{
             grid-area: percent;
         }
 
-        &--item5{
+        &--item4{
             grid-area: divide;
         }
 
-        &--item6{
+        &--item5{
             grid-area: seven;
         }
 
-        &--item7{
+        &--item6{
             grid-area: eight;
         }
 
-        &--item8{
+        &--item7{
             grid-area: nine;
         }
 
-        &--item9{
+        &--item8{
             grid-area: multiply;
         }
 
-        &--item10{
+        &--item9{
             grid-area: four;
         }
 
-        &--item11{
+        &--item10{
             grid-area: five;
         }
 
-        &--item12{
+        &--item11{
             grid-area: six;
         }
 
-        &--item13{
+        &--item12{
             grid-area: subtract;
         }
 
-        &--item14{
+        &--item13{
             grid-area: one;
         }
 
-        &--item15{
+        &--item14{
             grid-area: two;
         }
 
-        &--item16{
+        &--item15{
             grid-area: three;
         }
 
-        &--item17{
+        &--item16{
             grid-area: add;
+        }
+
+        &--item17{
+            grid-area: space;
         }
 
         &--item18{
@@ -132,7 +136,5 @@ main {
             grid-area: equals;
         }
         
-        &--item21{
-            grid-area: space;
-        }
+
     }
