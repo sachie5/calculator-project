@@ -2,71 +2,83 @@ a:link {
   text-decoration: none;
 }
 
-.calculator {
-  background-color: #FFC0CB;
+.calc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  /*        &--item1{
+              grid-area: screen;
+          } */
 }
-.calculator__button {
+.calc__screen {
+  display: flex;
   border: 1px solid black;
-  border-radius: 50%;
+  justify-content: center;
+  height: 100px;
 }
-.calculator__grid {
+.calc__grid {
   display: grid;
-  grid-template-areas: none;
+  gap: 10px;
+  grid-template-areas: "AC negative percent divide" "seven eight nine multiply" "four five six subtract" "one two three add" "space zero decimal equals";
 }
-.calculator--item1 {
+.calc--item2 {
   grid-area: AC;
 }
-.calculator--item2 {
-  grid-area: negative-operation;
+.calc--item3 {
+  grid-area: negative;
 }
-.calculator--item3 {
+.calc--item4 {
   grid-area: percent;
 }
-.calculator--item4 {
+.calc--item5 {
   grid-area: divide;
 }
-.calculator--item5 {
-  grid-area: multiply;
-}
-.calculator--item6 {
-  grid-area: subtract;
-}
-.calculator--item7 {
-  grid-area: add;
-}
-.calculator--item8 {
-  grid-area: equals;
-}
-.calculator--item9 {
-  grid-area: zero;
-}
-.calculator--item10 {
-  grid-area: one;
-}
-.calculator--item11 {
-  grid-area: two;
-}
-.calculator--item12 {
-  grid-area: three;
-}
-.calculator--item13 {
-  grid-area: four;
-}
-.calculator--item14 {
-  grid-area: five;
-}
-.calculator--item15 {
-  grid-area: six;
-}
-.calculator--item16 {
+.calc--item6 {
   grid-area: seven;
 }
-.calculator--item17 {
+.calc--item7 {
   grid-area: eight;
 }
-.calculator--item18 {
+.calc--item8 {
   grid-area: nine;
 }
-.calculator--item1 {
+.calc--item9 {
+  grid-area: multiply;
+}
+.calc--item10 {
+  grid-area: four;
+}
+.calc--item11 {
+  grid-area: five;
+}
+.calc--item12 {
+  grid-area: six;
+}
+.calc--item13 {
+  grid-area: subtract;
+}
+.calc--item14 {
+  grid-area: one;
+}
+.calc--item15 {
+  grid-area: two;
+}
+.calc--item16 {
+  grid-area: three;
+}
+.calc--item17 {
+  grid-area: add;
+}
+.calc--item18 {
+  grid-area: zero;
+}
+.calc--item19 {
   grid-area: decimal;
+}
+.calc--item20 {
+  grid-area: equals;
+}
+.calc--item21 {
+  grid-area: space;
 }
