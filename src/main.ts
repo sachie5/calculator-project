@@ -2,8 +2,8 @@ import './main.scss'
 
 /* // functions
 
-1) print number when button is click into the screen
-2) operations mean they will do that action 
+
+
 3) equals will print the result
 4) A/C clears the screen
  */
@@ -14,19 +14,77 @@ if(screen === null || numbers === null){
   throw new Error ("Issues with Selector")
 };
 
-const digits = Array.from(numbers);
 
-const printButtonNumber = (event: Event) => {
-  const buttonClicked = event.currentTarget; 
- for (let index = 0; index < digits.length; index++) {
-   return screen.textContent = `${digits[index].innerText}`;
-   }
-   return 
-}
-
+// 1) print number when button is click into the screen
 
 numbers.forEach(number => {
-  number.addEventListener("click", printButtonNumber)
+  number.addEventListener("click", () => {
+  return screen.textContent += `${number.innerHTML}`; 
+  }) 
  });
 
+// 2) operations mean they will do that action 
 
+const clear = document.querySelector<HTMLAnchorElement>("#AC");
+const addition = document.querySelector<HTMLAnchorElement>("#add");
+const subtraction = document.querySelector<HTMLAnchorElement>("#subtract");
+const multiplication = document.querySelector<HTMLAnchorElement>("#multiply");
+const division = document.querySelector<HTMLAnchorElement>("#divide");
+const equals = document.querySelector<HTMLAnchorElement>("#equals");
+const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
+
+if(!clear || !addition || !subtraction || !multiplication || !division || !equals ||!decimal){
+  throw new Error ("Issues with Selector")
+};
+
+//addition
+
+const addOperation = () => {
+  screen.textContent += "+";
+}
+
+addition.addEventListener ("click", addOperation);
+
+//subtraction
+const subtractOperation = () => {
+  screen.textContent += "-";
+}
+
+subtraction.addEventListener ("click", subtractOperation);
+
+//multiplication
+const multiplyOperation = () => {
+  screen.textContent += "x";
+}
+
+multiplication.addEventListener ("click", multiplyOperation);
+
+//division
+const divideOperation = () => {
+  screen.textContent += "÷";
+}
+
+division.addEventListener ("click", divideOperation);
+
+//equals
+const equalsOperation = () => {
+  screen.innerHTML = screen.innerHTML;
+}
+
+equals.addEventListener ("click", equalsOperation);
+
+//A/C
+
+const clearOperation = () => {
+  screen.innerHTML = "";
+}
+
+clear.addEventListener ("click", clearOperation);
+
+//decimal
+
+const decimalOperation = () => {
+  screen.innerHTML = ".";
+}
+
+decimal.addEventListener ("click", decimalOperation);
