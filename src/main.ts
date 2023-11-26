@@ -19,7 +19,7 @@ if(screen === null || numbers === null){
 
 numbers.forEach(number => {
   number.addEventListener("click", () => {
-  return screen.textContent += `${number.innerHTML}`; 
+  return screen.innerHTML += Number(number.innerHTML); 
   }) 
  });
 
@@ -32,43 +32,44 @@ const multiplication = document.querySelector<HTMLAnchorElement>("#multiply");
 const division = document.querySelector<HTMLAnchorElement>("#divide");
 const equals = document.querySelector<HTMLAnchorElement>("#equals");
 const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
+const negative = document.querySelector<HTMLAnchorElement>("#posneg")
 
-if(!clear || !addition || !subtraction || !multiplication || !division || !equals ||!decimal){
+if(!clear || !addition || !subtraction || !multiplication || !division || !equals ||!decimal || !negative){
   throw new Error ("Issues with Selector")
 };
 
 //addition
 
 const addOperation = () => {
-  screen.textContent += "+";
+  screen.innerHTML += "+";
 }
 
 addition.addEventListener ("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
-  screen.textContent += "-";
+  screen.innerHTML += "-";
 }
 
 subtraction.addEventListener ("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
-  screen.textContent += "x";
+  screen.innerHTML += "*";
 }
 
 multiplication.addEventListener ("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
-  screen.textContent += "÷";
+  screen.innerHTML += "/";
 }
 
 division.addEventListener ("click", divideOperation);
 
 //equals
 const equalsOperation = () => {
-  screen.innerHTML = screen.innerHTML;
+  screen.innerHTML =  screen.innerHTML;
 }
 
 equals.addEventListener ("click", equalsOperation);
@@ -88,3 +89,15 @@ const decimalOperation = () => {
 }
 
 decimal.addEventListener ("click", decimalOperation);
+
+//negative and positive
+
+/* const positiveOrNegative = () => {
+  if (Number(screen.innerHTML) >= 0){
+    screen.innerHTML = `-${screen.innerHTML}`
+    } else {
+    screen.innerHTML = `${screen.innerHTML}`;
+  }
+}
+
+negative.addEventListener("click", positiveOrNegative); */
