@@ -1,12 +1,7 @@
 import './main.scss'
 
-/* // functions
+// functions
 
-
-
-3) equals will print the result
-4) A/C clears the screen
- */
 const screen = document.querySelector<HTMLDivElement>(".calc__screen");
 const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
 
@@ -15,7 +10,7 @@ if(screen === null || numbers === null){
 };
 
 
-// 1) print number when button is click into the screen
+// print number when button is click into the screen
 
 numbers.forEach(number => {
   number.addEventListener("click", () => {
@@ -23,7 +18,7 @@ numbers.forEach(number => {
   }) 
  });
 
-// 2) operations mean they will do that action 
+// 2) operations mean they will print operation onto the screen
 
 const clear = document.querySelector<HTMLAnchorElement>("#AC");
 const addition = document.querySelector<HTMLAnchorElement>("#add");
@@ -67,21 +62,6 @@ const divideOperation = () => {
 
 division.addEventListener ("click", divideOperation);
 
-//equals
-const equalsOperation = () => {
-  screen.innerHTML =  screen.innerHTML;
-}
-
-equals.addEventListener ("click", equalsOperation);
-
-//A/C
-
-const clearOperation = () => {
-  screen.innerHTML = "";
-}
-
-clear.addEventListener ("click", clearOperation);
-
 //decimal
 
 const decimalOperation = () => {
@@ -89,6 +69,22 @@ const decimalOperation = () => {
 }
 
 decimal.addEventListener ("click", decimalOperation);
+
+//equals
+const equalsOperation = () => {
+  screen.innerHTML =  screen.innerHTML;
+}
+
+equals.addEventListener ("click", equalsOperation);
+
+//A/C button clears the screen
+
+const clearOperation = () => {
+  screen.innerHTML = "";
+}
+
+clear.addEventListener ("click", clearOperation);
+
 
 //negative and positive
 
