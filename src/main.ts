@@ -41,28 +41,28 @@ if(!clear || !addition || !subtraction || !multiplication || !division || !equal
 //addition
 
 const addOperation = () => {
-  screen.innerHTML += "+";
+  screen.innerHTML += " + ";
 }
 
 addition.addEventListener ("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
-  screen.innerHTML += "-";
+  screen.innerHTML += " - ";
 }
 
 subtraction.addEventListener ("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
-  screen.innerHTML += "*";
+  screen.innerHTML += " * ";
 }
 
 multiplication.addEventListener ("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
-  screen.innerHTML += "/";
+  screen.innerHTML += " / ";
 }
 
 division.addEventListener ("click", divideOperation);
@@ -85,7 +85,7 @@ clear.addEventListener ("click", clearOperation);
 //decimal
 
 const decimalOperation = () => {
-  screen.innerHTML = ".";
+  screen.innerHTML += ".";
 }
 
 decimal.addEventListener ("click", decimalOperation);
