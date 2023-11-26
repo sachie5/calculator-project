@@ -105,3 +105,13 @@ main {
 .calc--item20 {
   grid-area: equals;
 }
+
+@media screen and (min-width: 768px) {
+  .calc__screen {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: 75px;
+    background-color: white;
+  }
+}
