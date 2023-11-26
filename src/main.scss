@@ -11,6 +11,7 @@
 
 body {
     font-family: $font-body;
-    background-color: $page-color;
+    background-image: linear-gradient(to bottom right, #00BBF9, #00F5D4);
     padding: 10px;
+    min-height: 100vh;
 }
