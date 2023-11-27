@@ -72,7 +72,9 @@ decimal.addEventListener ("click", decimalOperation);
 
 //equals
 const equalsOperation = () => {
-  screen.innerHTML =  screen.innerHTML;
+
+  /* let result = 0;
+let equation = screen.innerHTML.split(/[+-]/);  */
 }
 
 equals.addEventListener ("click", equalsOperation);
