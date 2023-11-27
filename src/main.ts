@@ -1,22 +1,28 @@
-import './main.scss'
+import "./main.scss";
 
-// functions
+// numbers and screen HTML
 
 const screen = document.querySelector<HTMLDivElement>(".calc__screen");
 const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
 
-if(screen === null || numbers === null){
-  throw new Error ("Issues with Selector")
-};
+if (screen === null || numbers === null) {
+  throw new Error("Issues with Selector");
+}
 
+screen.innerHTML = "<p class=result></p>";
+const screenResult = document.querySelector<HTMLParagraphElement>(".result");
+
+if (!screenResult) {
+  throw new Error("Issues with Selector");
+}
 
 // print number when button is click into the screen
 
-numbers.forEach(number => {
+numbers.forEach((number) => {
   number.addEventListener("click", () => {
-  return screen.innerHTML += Number(number.innerHTML); 
-  }) 
- });
+    return (screenResult.innerText += ` ${number.innerText}`);
+  });
+});
 
 // 2) operations mean they will print operation onto the screen
 
@@ -27,66 +33,98 @@ const multiplication = document.querySelector<HTMLAnchorElement>("#multiply");
 const division = document.querySelector<HTMLAnchorElement>("#divide");
 const equals = document.querySelector<HTMLAnchorElement>("#equals");
 const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
-const negative = document.querySelector<HTMLAnchorElement>("#posneg")
+const negative = document.querySelector<HTMLAnchorElement>("#posneg");
 
-if(!clear || !addition || !subtraction || !multiplication || !division || !equals ||!decimal || !negative){
-  throw new Error ("Issues with Selector")
-};
+if (
+  !clear ||
+  !addition ||
+  !subtraction ||
+  !multiplication ||
+  !division ||
+  !equals ||
+  !decimal ||
+  !negative
+) {
+  throw new Error("Issues with Selector");
+}
 
 //addition
 
 const addOperation = () => {
-  screen.innerHTML += " + ";
-}
+  screenResult.innerText += " + ";
+};
 
-addition.addEventListener ("click", addOperation);
+addition.addEventListener("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
-  screen.innerHTML += " - ";
-}
+  screenResult.innerText += " - ";
+};
 
-subtraction.addEventListener ("click", subtractOperation);
+subtraction.addEventListener("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
-  screen.innerHTML += " * ";
-}
+  screenResult.innerText += " * ";
+};
 
-multiplication.addEventListener ("click", multiplyOperation);
+multiplication.addEventListener("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
-  screen.innerHTML += " / ";
-}
+  screenResult.innerText += " / ";
+};
 
-division.addEventListener ("click", divideOperation);
+division.addEventListener("click", divideOperation);
 
 //decimal
 
 const decimalOperation = () => {
-  screen.innerHTML += ".";
-}
+  screenResult.innerText += ".";
+};
 
-decimal.addEventListener ("click", decimalOperation);
-
-//equals
-const equalsOperation = () => {
-
-  /* let result = 0;
-let equation = screen.innerHTML.split(/[+-]/);  */
-}
-
-equals.addEventListener ("click", equalsOperation);
+decimal.addEventListener("click", decimalOperation);
 
 //A/C button clears the screen
 
 const clearOperation = () => {
-  screen.innerHTML = "";
-}
+  screenResult.innerHTML = "";
+};
 
-clear.addEventListener ("click", clearOperation);
+clear.addEventListener("click", clearOperation);
 
+//calculating equals
+const mathExpression = screenResult.innerText.split(" ");
+
+const calculate = (event: Event) => {
+  const calculateMath = event.currentTarget as HTMLAnchorElement;
+
+  let result: number = Number(mathExpression[0]);
+  for (let index = 1; index < mathExpression.length; index++) {
+    let operation = mathExpression[index];
+
+    switch (operation) {
+      case "+":
+        result += Number(mathExpression[index + 1]);
+        break;
+      case "-":
+        result -= Number(mathExpression[index + 1]);
+        break;
+      case "*":
+        result *= Number(mathExpression[index + 1]);
+        break;
+      case "/":
+        result /= Number(mathExpression[index + 1]);
+        break;
+      default:
+        break;
+    }
+  }
+  console.log(result);
+  return result;
+};
+
+equals.addEventListener("click", calculate);
 
 //negative and positive
 
