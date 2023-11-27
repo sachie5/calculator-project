@@ -97,12 +97,12 @@ clear.addEventListener("click", clearOperation);
 const mathExpression = screenResult.innerText.split(" ");
 
 const calculate = (event: Event) => {
-  const calculateMath = event.currentTarget as HTMLAnchorElement;
 
   let result: number = Number(mathExpression[0]);
-  for (let index = 1; index < mathExpression.length; index++) {
-    let operation = mathExpression[index];
-
+  let index = 1;
+  /* for (let index = 1; index < mathExpression.length; index++) { */
+    while (index < mathExpression.length - 1){
+    let operation = mathExpression[index]; 
     switch (operation) {
       case "+":
         result += Number(mathExpression[index + 1]);
@@ -121,8 +121,10 @@ const calculate = (event: Event) => {
     }
   }
   console.log(result);
+  screenResult.innerText = `${result}`;
   return result;
-};
+}
+
 
 equals.addEventListener("click", calculate);
 
