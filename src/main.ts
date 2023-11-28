@@ -1,4 +1,4 @@
-import "./main.scss";
+import "./styles/main.scss";
 
 // numbers and screen HTML
 
