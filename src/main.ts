@@ -2,29 +2,14 @@ import "./main.scss";
 
 // numbers and screen HTML
 
-const screen = document.querySelector<HTMLDivElement>(".calc__screen");
+const screenResult = document.querySelector<HTMLOutputElement>(".calc__screen");
 const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
 
-if (screen === null || numbers === null) {
+if (screenResult === null || numbers === null) {
   throw new Error("Issues with Selector");
 }
 
-screen.innerHTML = "<p class=result></p>";
-const screenResult = document.querySelector<HTMLParagraphElement>(".result");
-
-if (!screenResult) {
-  throw new Error("Issues with Selector");
-}
-
-// print number when button is click into the screen
-
-numbers.forEach((number) => {
-  number.addEventListener("click", () => {
-    return (screenResult.innerText += ` ${number.innerText}`);
-  });
-});
-
-// 2) operations mean they will print operation onto the screen
+// operations mean they will print operation onto the screen
 
 const clear = document.querySelector<HTMLAnchorElement>("#AC");
 const addition = document.querySelector<HTMLAnchorElement>("#add");
@@ -34,6 +19,8 @@ const division = document.querySelector<HTMLAnchorElement>("#divide");
 const equals = document.querySelector<HTMLAnchorElement>("#equals");
 const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
 const negative = document.querySelector<HTMLAnchorElement>("#posneg");
+const percent = document.querySelector<HTMLAnchorElement>("#percent");
+const body = document.querySelector<HTMLBodyElement>("body");
 
 if (
   !clear ||
@@ -43,36 +30,52 @@ if (
   !division ||
   !equals ||
   !decimal ||
-  !negative
+  !negative ||
+  !percent ||
+  !body
 ) {
   throw new Error("Issues with Selector");
 }
+// print number when button is click into the screen
+let currentEquation = "";
+
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+   currentEquation += `${number.innerText}`
+    console.log(number.innerText);
+    screenResult.innerText  = currentEquation;
+  });
+});
 
 //addition
 
 const addOperation = () => {
-  screenResult.innerText += " + ";
+ currentEquation += ` ${addition.innerText} `
+  screenResult.innerText = currentEquation;
 };
 
 addition.addEventListener("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
-  screenResult.innerText += " - ";
+ currentEquation += ` ${subtraction.innerText} `
+  screenResult.innerText = currentEquation;
 };
 
 subtraction.addEventListener("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
-  screenResult.innerText += " * ";
+ currentEquation += ` * `
+  screenResult.innerText = currentEquation;
 };
 
 multiplication.addEventListener("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
-  screenResult.innerText += " / ";
+ currentEquation += ` / `
+  screenResult.innerText = currentEquation;
 };
 
 division.addEventListener("click", divideOperation);
@@ -80,7 +83,8 @@ division.addEventListener("click", divideOperation);
 //decimal
 
 const decimalOperation = () => {
-  screenResult.innerText += ".";
+ currentEquation += `${decimal.innerText}`
+  screenResult.innerText = currentEquation;
 };
 
 decimal.addEventListener("click", decimalOperation);
@@ -88,16 +92,29 @@ decimal.addEventListener("click", decimalOperation);
 //A/C button clears the screen
 
 const clearOperation = () => {
-  screenResult.innerHTML = "";
+ currentEquation = " ";
+  screenResult.innerText = currentEquation;
 };
 
 clear.addEventListener("click", clearOperation);
 
+//percent operation
+
+const percentOperation = () => {
+  body.style.background= "#4e54c8";
+  body.style.background = "-webkit-linear-gradient(to left, #8f94fb, #4e54c8)";
+  }
+
+percent.addEventListener("click", percentOperation);
+
+// negative/postive 
+
+
 //calculating equals
-const mathExpression = screenResult.innerText.split(" ");
 
 const calculate = (event: Event) => {
-
+  const mathExpression = screenResult.innerText.split(" ");
+  console.log(mathExpression);
   let result: number = Number(mathExpression[0]);
   let index = 1;
   /* for (let index = 1; index < mathExpression.length; index++) { */
@@ -119,23 +136,15 @@ const calculate = (event: Event) => {
       default:
         break;
     }
+    index += 2;
   }
-  console.log(result);
-  screenResult.innerText = `${result}`;
+  currentEquation = `${result}`;
+  screenResult.innerText = currentEquation;
   return result;
 }
 
 
 equals.addEventListener("click", calculate);
 
-//negative and positive
 
-/* const positiveOrNegative = () => {
-  if (Number(screen.innerHTML) >= 0){
-    screen.innerHTML = `-${screen.innerHTML}`
-    } else {
-    screen.innerHTML = `${screen.innerHTML}`;
-  }
-}
 
-negative.addEventListener("click", positiveOrNegative); */
