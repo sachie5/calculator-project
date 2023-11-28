@@ -8,7 +8,6 @@ My project is to create a calculator using HTML, CSS and Typescript.
 2. SCSS Structure
 3. CSS Grid and Flexbox
 4. TypeScript
-5.
 
 ## HTML Structure
 
@@ -36,3 +35,39 @@ The first section is getting the screen and numberinto variables and adding a p 
 I used querySelectorAll and .foreach to make the button print the text on the screen when clicked.
 
 For the operations, I stored the element in variables using querySelctor and used .addEventListener to print on the screen using the function.
+
+My best code is definitely the calculate function which took a few days to get to function correctly:
+
+const calculate = (event: Event) => {
+  const mathExpression = screenResult.innerText.split(" ");
+  console.log(mathExpression);
+  let result: number = Number(mathExpression[0]);
+  let index = 1;
+  /* for (let index = 1; index < mathExpression.length; index++) { */
+    while (index < mathExpression.length - 1){
+    let operation = mathExpression[index]; 
+    switch (operation) {
+      case "+":
+        result += Number(mathExpression[index + 1]);
+        break;
+      case "-":
+        result -= Number(mathExpression[index + 1]);
+        break;
+      case "*":
+        result *= Number(mathExpression[index + 1]);
+        break;
+      case "/":
+        result /= Number(mathExpression[index + 1]);
+        break;
+      default:
+        break;
+    }
+    index += 2;
+  }
+  currentEquation = `${result}`;
+  screenResult.innerText = currentEquation;
+  return result;
+}
+}
+
+I created a switch statement as it allowed me to see the conditionals better than an if else and allow me to break/stop once a certain operation was found. I used a while loop as I know that it would stop once it reached the allocated condition and the length of the array would vary depending on the user input. The part that took me longer to figure out was the presences of currentEqaution which begins as an empty string before any functions and stores every button's innerText when pressed.

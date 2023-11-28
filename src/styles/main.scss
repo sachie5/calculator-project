@@ -11,7 +11,13 @@
 
 body {
     font-family: $font-body;
-    background-image: linear-gradient(to bottom right, #00BBF9, #00F5D4);
     padding: 10px;
     min-height: 100vh;
+    background-color: $page-color;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
