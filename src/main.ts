@@ -129,7 +129,6 @@ percent.addEventListener("click", percentOperation);
 
 const calculate = (event: Event) => {
   const mathExpression = screenResult.innerText.split(" ");
-  console.log(mathExpression);
   let result: number = Number(mathExpression[0]);
   let index = 1;
   /* for (let index = 1; index < mathExpression.length; index++) { */

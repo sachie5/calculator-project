@@ -40,7 +40,7 @@ a:link {
             "seven eight nine multiply"
             "four five six subtract"
             "one two three add"
-            ". zero decimal equals";
+            "backspace zero decimal equals";
 
     }
 
@@ -109,7 +109,10 @@ a:link {
     }
 
     &--item17 {
-        grid-area: space;
+        grid-area: backspace;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
 
     &--item18 {
@@ -130,6 +133,16 @@ a:link {
 @media screen and (min-width: 768px) {
     .calc {
         font-size: 36px;
+    
+    &__grid{
+
+        &--item17 {
+            object-fit: contain;
+            grid-area: backspace;
+            max-width: 100%; 
+            max-height: 15rem;       
+        }
+    }
     }
 }
 
