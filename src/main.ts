@@ -50,32 +50,45 @@ numbers.forEach((number) => {
 //addition
 
 const addOperation = () => {
- currentEquation += ` ${addition.innerText} `
+if(currentEquation.match(/[+/*-]/)){
+  return currentEquation;
+} else {
+  currentEquation += ` ${addition.innerText} `
   screenResult.innerText = currentEquation;
+}
 };
 
 addition.addEventListener("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
- currentEquation += ` ${subtraction.innerText} `
+  if(currentEquation.match(/[+/*-]/)){
+    return currentEquation;
+  } else {currentEquation += ` ${subtraction.innerText} `
   screenResult.innerText = currentEquation;
+}
 };
 
 subtraction.addEventListener("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
- currentEquation += ` * `
+  if(currentEquation.match(/[+/*-]/)){
+    return currentEquation;
+  } else {currentEquation += ` * `
   screenResult.innerText = currentEquation;
+}
 };
 
 multiplication.addEventListener("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
- currentEquation += ` / `
+  if(currentEquation.match(/[+/*-]/)){
+    return currentEquation;
+  } else {currentEquation += ` / `
   screenResult.innerText = currentEquation;
+}
 };
 
 division.addEventListener("click", divideOperation);
@@ -83,8 +96,11 @@ division.addEventListener("click", divideOperation);
 //decimal
 
 const decimalOperation = () => {
- currentEquation += `${decimal.innerText}`
+  if(currentEquation.match(/[+/*-]/)){
+    return currentEquation;
+  } else {currentEquation += `${decimal.innerText}`
   screenResult.innerText = currentEquation;
+}
 };
 
 decimal.addEventListener("click", decimalOperation);
@@ -104,7 +120,6 @@ const percentOperation = () => {
   body.style.background= "#4e54c8";
   body.style.background = "-webkit-linear-gradient(to left, #8f94fb, #4e54c8)";
   }
-
 percent.addEventListener("click", percentOperation);
 
 // negative/postive 

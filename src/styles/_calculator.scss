@@ -1,21 +1,19 @@
-@use "./variables" as *;
+@use "./variables"as *;
 
-a:link{
+a:link {
     text-decoration: none;
 }
 
-.calc{
+.calc {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px; 
+    padding: 20px;
     font-size: 24px;
 
     &__screen {
         display: flex;
         justify-content: flex-end;
         width: 90%;
-        height: 30%;
         background-color: $secondary-color;
     }
 
@@ -38,114 +36,102 @@ a:link{
         grid-template-rows: repeat(5, 1fr);
         grid-template-columns: repeat(4, 1fr);
         grid-template-areas:
-        "AC negative percent divide"
-        "seven eight nine multiply"
-        "four five six subtract"
-        "one two three add"
-        ". zero decimal equals" ; 
+            "AC negative percent divide"
+            "seven eight nine multiply"
+            "four five six subtract"
+            "one two three add"
+            ". zero decimal equals";
 
     }
 
-        &--item1{
-            grid-area: AC;
-        }
-        
-        &--item2{
-            grid-area: negative;
-        }
-
-        &--item3{
-            grid-area: percent;
-        }
-
-        &--item4{
-            grid-area: divide;
-        }
-
-        &--item5{
-            grid-area: seven;
-        }
-
-        &--item6{
-            grid-area: eight;
-        }
-
-        &--item7{
-            grid-area: nine;
-        }
-
-        &--item8{
-            grid-area: multiply;
-        }
-
-        &--item9{
-            grid-area: four;
-        }
-
-        &--item10{
-            grid-area: five;
-        }
-
-        &--item11{
-            grid-area: six;
-        }
-
-        &--item12{
-            grid-area: subtract;
-        }
-
-        &--item13{
-            grid-area: one;
-        }
-
-        &--item14{
-            grid-area: two;
-        }
-
-        &--item15{
-            grid-area: three;
-        }
-
-        &--item16{
-            grid-area: add;
-        }
-
-        &--item17{
-            grid-area: space;
-        }
-
-        &--item18{
-            grid-area: zero;
-        }
-
-        &--item19{
-            grid-area: decimal;
-        }
-
-        &--item20{
-            grid-area: equals;
-        }
-        
-
+    &--item1 {
+        grid-area: AC;
     }
 
-    @media screen and (min-width: 768px) {
-        .calc{
-
-            font-size: 36px;
-
-            &__screen {
-                height: 10%;
-            }
-
-
+    &--item2 {
+        grid-area: negative;
     }
-};
 
-@media screen and (min-width: 1024px) {
-    .calc{
-        
-        font-size: 46px;
+    &--item3 {
+        grid-area: percent;
+    }
 
-};
+    &--item4 {
+        grid-area: divide;
+    }
+
+    &--item5 {
+        grid-area: seven;
+    }
+
+    &--item6 {
+        grid-area: eight;
+    }
+
+    &--item7 {
+        grid-area: nine;
+    }
+
+    &--item8 {
+        grid-area: multiply;
+    }
+
+    &--item9 {
+        grid-area: four;
+    }
+
+    &--item10 {
+        grid-area: five;
+    }
+
+    &--item11 {
+        grid-area: six;
+    }
+
+    &--item12 {
+        grid-area: subtract;
+    }
+
+    &--item13 {
+        grid-area: one;
+    }
+
+    &--item14 {
+        grid-area: two;
+    }
+
+    &--item15 {
+        grid-area: three;
+    }
+
+    &--item16 {
+        grid-area: add;
+    }
+
+    &--item17 {
+        grid-area: space;
+    }
+
+    &--item18 {
+        grid-area: zero;
+    }
+
+    &--item19 {
+        grid-area: decimal;
+    }
+
+    &--item20 {
+        grid-area: equals;
+    }
+
+
 }
+
+@media screen and (min-width: 768px) {
+    .calc {
+        font-size: 36px;
+    }
+}
+
+;
+
