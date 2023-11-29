@@ -40,22 +40,30 @@ let currentEquation = "";
 let currentButtonClicked: string = "";
 
 numbers.forEach((number) => {
-  number.addEventListener("click", (event: Event) => {
+  number.addEventListener("click", () => {
+    if(currentButtonClicked === "="){
+      currentEquation = `${number.innerText}`
+      screenResult.innerText = currentEquation;
+      currentButtonClicked = number.innerText;
+    } else {
     currentEquation += `${number.innerText}`;
     screenResult.innerText = currentEquation;
     currentButtonClicked = number.innerText;
-  });
+  }
+});
 });
 
 //addition
 
-const addOperation = (event: Event) => {
+const addOperation = () => {
   if (
     currentButtonClicked === "+" ||
     currentButtonClicked === "-" ||
     currentButtonClicked === "/" ||
     currentButtonClicked === "*"
   ) {
+    return currentEquation;
+  } else if(currentButtonClicked === "="){
     return currentEquation;
   } else {
     currentEquation += ` ${addition.innerText} `;
@@ -75,7 +83,9 @@ const subtractOperation = () => {
     currentButtonClicked === "*"
   ) {
     return currentEquation;
-  } else {
+  }  else if(currentButtonClicked === "="){
+    return currentEquation;
+  }else {
     currentEquation += ` ${subtraction.innerText} `;
     screenResult.innerText = currentEquation;
     currentButtonClicked = subtraction.innerText;
@@ -92,6 +102,8 @@ const multiplyOperation = () => {
     currentButtonClicked === "/" ||
     currentButtonClicked === "*"
   ) {
+    return currentEquation;
+  }  else if(currentButtonClicked === "="){
     return currentEquation;
   } else {
     currentEquation += ` * `;
@@ -110,6 +122,8 @@ const divideOperation = () => {
     currentButtonClicked === "/" ||
     currentButtonClicked === "*"
   ) {
+    return currentEquation;
+  }  else if(currentButtonClicked === "="){
     return currentEquation;
   } else {
     currentEquation += ` / `;
@@ -141,9 +155,15 @@ decimal.addEventListener("click", decimalOperation);
 
 // positive and negative
 const negativeOrPositive = () => {
+  if(Number.isNaN(parseFloat(currentEquation) * -1)) {
+   return screenResult.innerText = "";
+  }  else if(currentButtonClicked === "="){
+    return currentEquation;
+  } else {
   screenResult.innerText = `${parseFloat(currentEquation) * -1}`;
   currentEquation = screenResult.innerText;
  }
+}
  
  negative.addEventListener("click", negativeOrPositive)
 
@@ -175,7 +195,7 @@ sqroot.addEventListener("click", squareRoot);
 
 //calculating equals
 
-const calculate = (event: Event) => {
+const calculate = () => {
   console.log(screenResult.innerText);
   const mathExpression = screenResult.innerText.split(" ");
   let result: number = Number(mathExpression[0]);
@@ -202,6 +222,7 @@ const calculate = (event: Event) => {
     index += 2;
   }
   currentEquation = `${result}`;
+  currentButtonClicked = equals.innerText;
   screenResult.innerText = currentEquation;
   return result;
 };
