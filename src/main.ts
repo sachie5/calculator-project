@@ -1,16 +1,9 @@
 import "./styles/main.scss";
 
-// numbers and screen HTML
+// Getting HTML Variables
 
 const screenResult = document.querySelector<HTMLOutputElement>(".calc__screen");
 const numbers = document.querySelectorAll<HTMLAnchorElement>(".number");
-
-if (screenResult === null || numbers === null) {
-  throw new Error("Issues with Selector");
-}
-
-// operations mean they will print operation onto the screen
-
 const clear = document.querySelector<HTMLAnchorElement>("#AC");
 const addition = document.querySelector<HTMLAnchorElement>("#add");
 const subtraction = document.querySelector<HTMLAnchorElement>("#subtract");
@@ -20,7 +13,12 @@ const equals = document.querySelector<HTMLAnchorElement>("#equals");
 const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
 const negative = document.querySelector<HTMLAnchorElement>("#posneg");
 const percent = document.querySelector<HTMLAnchorElement>("#percent");
+const sqroot = document.querySelector<HTMLAnchorElement>("#sq-root")
 const body = document.querySelector<HTMLBodyElement>("body");
+
+if (screenResult === null || numbers === null) {
+  throw new Error("Issues with Selector");
+}
 
 if (
   !clear ||
@@ -32,63 +30,92 @@ if (
   !decimal ||
   !negative ||
   !percent ||
-  !body
+  !body ||
+  !sqroot
 ) {
   throw new Error("Issues with Selector");
 }
 // print number when button is click into the screen
 let currentEquation = "";
+let currentButtonClicked: string = "";
 
 numbers.forEach((number) => {
-  number.addEventListener("click", () => {
-   currentEquation += `${number.innerText}`
-    console.log(number.innerText);
-    screenResult.innerText  = currentEquation;
+  number.addEventListener("click", (event: Event) => {
+    currentEquation += `${number.innerText}`;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = number.innerText;
   });
 });
 
 //addition
 
-const addOperation = () => {
-if(currentEquation.match(/[+/*-]/)){
-  return currentEquation;
-} else {
-  currentEquation += ` ${addition.innerText} `
-  screenResult.innerText = currentEquation;
-}
+const addOperation = (event: Event) => {
+  if (
+    currentButtonClicked === "+" ||
+    currentButtonClicked === "-" ||
+    currentButtonClicked === "/" ||
+    currentButtonClicked === "*"
+  ) {
+    return currentEquation;
+  } else {
+    currentEquation += ` ${addition.innerText} `;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = addition.innerText;
+  }
 };
 
 addition.addEventListener("click", addOperation);
 
 //subtraction
 const subtractOperation = () => {
-  if(currentEquation.match(/[+/*-]/)){
+  if ( 
+    currentButtonClicked === "+" ||
+    currentButtonClicked === "-" ||
+    currentButtonClicked === "/" ||
+    currentButtonClicked === "*"
+  ) {
     return currentEquation;
-  } else {currentEquation += ` ${subtraction.innerText} `
-  screenResult.innerText = currentEquation;
-}
+  } else {
+    currentEquation += ` ${subtraction.innerText} `;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = subtraction.innerText;
+  }
 };
 
 subtraction.addEventListener("click", subtractOperation);
 
 //multiplication
 const multiplyOperation = () => {
-  if(currentEquation.match(/[+/*-]/)){
+  if (
+    currentButtonClicked === "+" ||
+    currentButtonClicked === "-" ||
+    currentButtonClicked === "/" ||
+    currentButtonClicked === "*"
+  ) {
     return currentEquation;
-  } else {currentEquation += ` * `
-  screenResult.innerText = currentEquation;
-}
+  } else {
+    currentEquation += ` * `;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = multiplication.innerText;
+  }
 };
 
 multiplication.addEventListener("click", multiplyOperation);
 
 //division
 const divideOperation = () => {
-  if(currentEquation.match(/[+/*-]/)){
+  if (
+    currentButtonClicked === "+" ||
+    currentButtonClicked === "-" ||
+    currentButtonClicked === "/" ||
+    currentButtonClicked === "*"
+  ) {
     return currentEquation;
-  } else {currentEquation += ` / `
-  screenResult.innerText = currentEquation;
-}
+  } else {
+    currentEquation += ` / `;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = division.innerText;
+  }
 };
 
 division.addEventListener("click", divideOperation);
@@ -96,19 +123,34 @@ division.addEventListener("click", divideOperation);
 //decimal
 
 const decimalOperation = () => {
-  if(currentEquation.match(/[+/*-]/)){
+  if (
+    currentButtonClicked === "+" ||
+    currentButtonClicked === "-" ||
+    currentButtonClicked === "/" ||
+    currentButtonClicked === "*"
+  ) {
     return currentEquation;
-  } else {currentEquation += `${decimal.innerText}`
-  screenResult.innerText = currentEquation;
-}
+  } else {
+    currentEquation += `${decimal.innerText}`;
+    screenResult.innerText = currentEquation;
+    currentButtonClicked = decimal.innerText;
+  }
 };
 
 decimal.addEventListener("click", decimalOperation);
 
+// positive and negative
+const negativeOrPositive = () => {
+  screenResult.innerText = `${parseFloat(currentEquation) * -1}`;
+  currentEquation = screenResult.innerText;
+ }
+ 
+ negative.addEventListener("click", negativeOrPositive)
+
 //A/C button clears the screen
 
 const clearOperation = () => {
- currentEquation = " ";
+  currentEquation = " ";
   screenResult.innerText = currentEquation;
 };
 
@@ -117,23 +159,29 @@ clear.addEventListener("click", clearOperation);
 //percent operation
 
 const percentOperation = () => {
-  body.style.background= "#4e54c8";
-  body.style.background = "-webkit-linear-gradient(to left, #8f94fb, #4e54c8)";
-  }
+  currentEquation = "Congratulations";
+  screenResult.innerText = currentEquation;
+  body.style.background = "#4e54c8";
+};
 percent.addEventListener("click", percentOperation);
 
-// negative/postive 
+// square root
 
+const squareRoot = () => {
+  screenResult.innerText = Math.sqrt(Number(currentEquation)).toString();
+};
+
+sqroot.addEventListener("click", squareRoot);
 
 //calculating equals
 
 const calculate = (event: Event) => {
+  console.log(screenResult.innerText);
   const mathExpression = screenResult.innerText.split(" ");
   let result: number = Number(mathExpression[0]);
   let index = 1;
-  /* for (let index = 1; index < mathExpression.length; index++) { */
-    while (index < mathExpression.length - 1){
-    let operation = mathExpression[index]; 
+  while (index < mathExpression.length - 1) {
+    let operation = mathExpression[index];
     switch (operation) {
       case "+":
         result += Number(mathExpression[index + 1]);
@@ -148,6 +196,7 @@ const calculate = (event: Event) => {
         result /= Number(mathExpression[index + 1]);
         break;
       default:
+        result = 0;
         break;
     }
     index += 2;
@@ -155,10 +204,6 @@ const calculate = (event: Event) => {
   currentEquation = `${result}`;
   screenResult.innerText = currentEquation;
   return result;
-}
-
+};
 
 equals.addEventListener("click", calculate);
-
-
-
