@@ -1,4 +1,5 @@
 import "./styles/main.scss";
+import confetti, { Options } from "canvas-confetti";
 
 // Getting HTML Variables
 
@@ -13,14 +14,15 @@ const equals = document.querySelector<HTMLAnchorElement>("#equals");
 const decimal = document.querySelector<HTMLAnchorElement>("#decimal-point");
 const negative = document.querySelector<HTMLAnchorElement>("#posneg");
 const percent = document.querySelector<HTMLAnchorElement>("#percent");
-const sqroot = document.querySelector<HTMLAnchorElement>("#sq-root")
+const sqroot = document.querySelector<HTMLAnchorElement>("#sq-root");
 const body = document.querySelector<HTMLBodyElement>("body");
 
-if (screenResult === null || numbers === null) {
-  throw new Error("Issues with Selector");
+if (numbers === null) {
+  throw new Error("Issues with Selectors");
 }
 
 if (
+  !screenResult ||
   !clear ||
   !addition ||
   !subtraction ||
@@ -35,25 +37,27 @@ if (
 ) {
   throw new Error("Issues with Selector");
 }
-// print number when button is click into the screen
+
+// Add numbers to screen when button pressed
+
 let currentEquation = "";
 let currentButtonClicked: string = "";
 
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
-    if(currentButtonClicked === "="){
-      currentEquation = `${number.innerText}`
+    if (currentButtonClicked === "=" || currentButtonClicked === "%") {
+      currentEquation = `${number.innerText}`;
       screenResult.innerText = currentEquation;
       currentButtonClicked = number.innerText;
     } else {
-    currentEquation += `${number.innerText}`;
-    screenResult.innerText = currentEquation;
-    currentButtonClicked = number.innerText;
-  }
-});
+      currentEquation += `${number.innerText}`;
+      screenResult.innerText = currentEquation;
+      currentButtonClicked = number.innerText;
+    }
+  });
 });
 
-//addition
+// Addition operation
 
 const addOperation = () => {
   if (
@@ -63,7 +67,7 @@ const addOperation = () => {
     currentButtonClicked === "*"
   ) {
     return currentEquation;
-  } else if(currentButtonClicked === "="){
+  } else if (currentButtonClicked === "=" || currentButtonClicked === "%") {
     return currentEquation;
   } else {
     currentEquation += ` ${addition.innerText} `;
@@ -74,18 +78,19 @@ const addOperation = () => {
 
 addition.addEventListener("click", addOperation);
 
-//subtraction
+//Subtraction
+
 const subtractOperation = () => {
-  if ( 
+  if (
     currentButtonClicked === "+" ||
     currentButtonClicked === "-" ||
     currentButtonClicked === "/" ||
     currentButtonClicked === "*"
   ) {
     return currentEquation;
-  }  else if(currentButtonClicked === "="){
+  } else if (currentButtonClicked === "=" || currentButtonClicked === "%") {
     return currentEquation;
-  }else {
+  } else {
     currentEquation += ` ${subtraction.innerText} `;
     screenResult.innerText = currentEquation;
     currentButtonClicked = subtraction.innerText;
@@ -94,7 +99,8 @@ const subtractOperation = () => {
 
 subtraction.addEventListener("click", subtractOperation);
 
-//multiplication
+//Multiplication
+
 const multiplyOperation = () => {
   if (
     currentButtonClicked === "+" ||
@@ -103,7 +109,7 @@ const multiplyOperation = () => {
     currentButtonClicked === "*"
   ) {
     return currentEquation;
-  }  else if(currentButtonClicked === "="){
+  } else if (currentButtonClicked === "=" || currentButtonClicked === "%") {
     return currentEquation;
   } else {
     currentEquation += ` * `;
@@ -114,7 +120,7 @@ const multiplyOperation = () => {
 
 multiplication.addEventListener("click", multiplyOperation);
 
-//division
+// Division
 const divideOperation = () => {
   if (
     currentButtonClicked === "+" ||
@@ -123,7 +129,7 @@ const divideOperation = () => {
     currentButtonClicked === "*"
   ) {
     return currentEquation;
-  }  else if(currentButtonClicked === "="){
+  } else if (currentButtonClicked === "=" || currentButtonClicked === "%") {
     return currentEquation;
   } else {
     currentEquation += ` / `;
@@ -134,14 +140,15 @@ const divideOperation = () => {
 
 division.addEventListener("click", divideOperation);
 
-//decimal
+// Decimal
 
 const decimalOperation = () => {
   if (
     currentButtonClicked === "+" ||
     currentButtonClicked === "-" ||
     currentButtonClicked === "/" ||
-    currentButtonClicked === "*"
+    currentButtonClicked === "*" ||
+    currentButtonClicked === "%"
   ) {
     return currentEquation;
   } else {
@@ -153,23 +160,25 @@ const decimalOperation = () => {
 
 decimal.addEventListener("click", decimalOperation);
 
-// positive and negative
+// Positive and negative numbers
 const negativeOrPositive = () => {
   const currentNumbers = screenResult.innerText.split(" ");
-  const negNumbers = currentNumbers.map((num , i) => {
+  const negNumbers = currentNumbers.map((num, i) => {
     if (!isNaN(Number(num)) && i === currentNumbers.length - 1) {
-      return ` ${(Number(num) * -1)}`;
-     }
-     return ` ${num}`;
-    })
-    currentEquation = negNumbers.join("");
-    screenResult.innerText = currentEquation;
-  }
+      return ` ${Number(num) * -1}`;
+    } else if (num === "+" || num === "-" || num === "/" || num === "*") {
+      return ` ${num} `;
+    } else {
+      return ` ${num}`;
+    }
+  });
+  currentEquation = negNumbers.join("");
+  screenResult.innerText = currentEquation;
+};
 
- negative.addEventListener("click", negativeOrPositive)
+negative.addEventListener("click", negativeOrPositive);
 
 //A/C button clears the screen
-
 const clearOperation = () => {
   currentEquation = " ";
   screenResult.innerText = currentEquation;
@@ -177,13 +186,21 @@ const clearOperation = () => {
 
 clear.addEventListener("click", clearOperation);
 
-//percent operation
-
+//Easter Egg
 const percentOperation = () => {
+  currentButtonClicked = "%";
   currentEquation = "Congratulations";
   screenResult.innerText = currentEquation;
-  body.style.background = "#4e54c8";
+  const options: Options = {
+    particleCount: 100,
+    spread: Math.random() * 361,
+    angle: Math.random() * 361,
+    gravity: 0.5,
+    colors: ["#227C9D", "#17C3B2", "#FFCB77", "#FEF9EF", "#FE6D73"],
+  };
+  return confetti(options);
 };
+
 percent.addEventListener("click", percentOperation);
 
 // square root
@@ -229,7 +246,3 @@ const calculate = () => {
 };
 
 equals.addEventListener("click", calculate);
-function num(value: string, index: number, array: string[]): unknown {
-  throw new Error("Function not implemented.");
-}
-
