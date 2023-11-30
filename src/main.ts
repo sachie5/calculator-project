@@ -155,16 +155,17 @@ decimal.addEventListener("click", decimalOperation);
 
 // positive and negative
 const negativeOrPositive = () => {
-  if(Number.isNaN(parseFloat(currentEquation) * -1)) {
-   return screenResult.innerText = "";
-  }  else if(currentButtonClicked === "="){
-    return currentEquation;
-  } else {
-  screenResult.innerText = `${parseFloat(currentEquation) * -1}`;
-  currentEquation = screenResult.innerText;
- }
-}
- 
+  const currentNumbers = screenResult.innerText.split(" ");
+  const negNumbers = currentNumbers.map((num , i) => {
+    if (!isNaN(Number(num)) && i === currentNumbers.length - 1) {
+      return ` ${(Number(num) * -1)}`;
+     }
+     return ` ${num}`;
+    })
+    currentEquation = negNumbers.join("");
+    screenResult.innerText = currentEquation;
+  }
+
  negative.addEventListener("click", negativeOrPositive)
 
 //A/C button clears the screen
@@ -228,3 +229,7 @@ const calculate = () => {
 };
 
 equals.addEventListener("click", calculate);
+function num(value: string, index: number, array: string[]): unknown {
+  throw new Error("Function not implemented.");
+}
+
